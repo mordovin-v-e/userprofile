@@ -1,0 +1,6 @@
+server:
+  port: 8000
+
+springdoc:
+  swagger-ui:
+    url: /api.yaml

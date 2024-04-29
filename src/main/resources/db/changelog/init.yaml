@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vitaliy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            - tableExists:
+                tableName: user_profile
+            - sequenceExists:
+                sequenceName: user_profile_id_seq
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_profile_id_seq
+            startValue: 1
+        - createTable:
+            tableName: user_profile
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user_profile
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: user_profile_id_seq
+              - column:
+                  name: username
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
